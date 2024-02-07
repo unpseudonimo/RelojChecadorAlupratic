@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_menu_inicio"
             android:title="@string/menu_inicio" />
         <item
-            android:id="@+id/nav_empleados"
+            android:id="@+id/nav_gestion_empleados"
             android:icon="@drawable/ic_menu_empleados"
-            android:title="@string/menu_gestionEmpleados" />
+            android:title="@string/menu_gestion_empleados" />
         <item
             android:id="@+id/nav_reportes"
             android:icon="@drawable/ic_menu_reportes"

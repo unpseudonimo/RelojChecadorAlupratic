@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.relojchecadoralupratic.databinding.FragmentGestionempleadosBinding
-import com.example.relojchecadoralupratic.viewmodels.SlideshowViewModel
+import com.example.relojchecadoralupratic.viewmodels.GestionEmpleadosViewModel
 
 class GestionEmpleadosFragment : Fragment() {
 
@@ -23,14 +23,14 @@ class GestionEmpleadosFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val slideshowViewModel =
-            ViewModelProvider(this).get(SlideshowViewModel::class.java)
+        val gestionEmpleadosViewModel =
+            ViewModelProvider(this).get(GestionEmpleadosViewModel::class.java)
 
         _binding = FragmentGestionempleadosBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
+        gestionEmpleadosViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

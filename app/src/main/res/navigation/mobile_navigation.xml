@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_inicio"
-        android:name="com.example.relojchecadoralupratic.ui.fragments.inicio.HomeFragment"
+        android:name="com.example.relojchecadoralupratic.ui.fragments.inicio.InicioFragment"
         android:label="@string/menu_inicio"
         tools:layout="@layout/fragment_inicio" />
 
     <fragment
-        android:id="@+id/nav_gestionEmpleados"
-        android:name="com.example.relojchecadoralupratic.ui.fragments.reportes.ReportesFragment"
-        android:label="@string/menu_gestionEmpleados"
-        tools:layout="@layout/fragment_reportes" />
+        android:id="@+id/nav_gestion_empleados"
+        android:name="com.example.relojchecadoralupratic.ui.fragments.gestionempleados.GestionEmpleadosFragment"
+        android:label="@string/menu_gestion_empleados"
+        tools:layout="@layout/fragment_gestionempleados" />
 
     <fragment
         android:id="@+id/nav_reportes"
-        android:name="com.example.relojchecadoralupratic.ui.fragments.gestionempleados.GestionEmpleadosFragment"
+        android:name="com.example.relojchecadoralupratic.ui.fragments.reportes.ReportesFragment"
         android:label="@string/menu_reportes"
-        tools:layout="@layout/fragment_gestionempleados" />
+        tools:layout="@layout/fragment_reportes" />
 </navigation>

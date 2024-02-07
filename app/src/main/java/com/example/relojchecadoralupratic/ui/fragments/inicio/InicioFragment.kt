@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.relojchecadoralupratic.databinding.FragmentInicioBinding
-import com.example.relojchecadoralupratic.viewmodels.HomeViewModel
+import com.example.relojchecadoralupratic.viewmodels.InicioViewModel
 
-class HomeFragment : Fragment() {
+class InicioFragment : Fragment() {
 
     private var _binding: FragmentInicioBinding? = null
 
@@ -23,14 +23,14 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val inicioViewModel =
+            ViewModelProvider(this).get(InicioViewModel::class.java)
 
         _binding = FragmentInicioBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        inicioViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
