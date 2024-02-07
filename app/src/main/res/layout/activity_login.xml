@@ -6,4 +6,65 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.LoginActivity">
 
+    <LinearLayout
+        android:id="@+id/llLoginContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/ivLogoAlu"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/i_logo">
+        </ImageView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/usernameInputLayout"
+            style="?attr/textInputOutlinedStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/username">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordInputLayout"
+            style="?attr/textInputOutlinedStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginButton"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="@string/login"/>
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

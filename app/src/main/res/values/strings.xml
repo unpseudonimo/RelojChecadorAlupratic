@@ -19,4 +19,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Clave de acceso</string>
+    <string name="login">Ingresar al sistema</string>
 </resources>
