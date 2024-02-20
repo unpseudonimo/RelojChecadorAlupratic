@@ -1,6 +1,6 @@
 package com.example.relojchecadoralupratic.models
 
-data class AsistenciaRegistro(
+data class Asistencia(
     val id: Int, // Ejemplo de propiedad "id"
     val empleadoId: Int,
     val fecha: String,

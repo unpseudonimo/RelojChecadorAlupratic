@@ -54,7 +54,8 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6") // Biblioteca de IU para la navegación en AndroidX
 
     // Annotations
-    implementation("androidx.annotation:annotation:1.7.1") // Anotaciones de AndroidX
+    implementation("androidx.annotation:annotation:1.7.1")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0") // Anotaciones de AndroidX
 
     // Testing
     testImplementation("junit:junit:4.13.2") // JUnit para pruebas unitarias
