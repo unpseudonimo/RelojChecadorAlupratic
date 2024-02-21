@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.relojchecadoralupratic.databinding.ActivityMainBinding
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setSupportActionBar(binding.appBarMain.toolbar)
+        supportActionBar?.show()  // Agrega esta línea
 
         binding.appBarMain.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         val username = sharedPreferences.getString("username", "N/A")
         Log.d("MainActivity", "Usuario en sesión: $username")
         return isLoggedIn
+        Log.d("MainActivity",  "$isLoggedIn")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -88,8 +91,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        // Permite que la barra de acción maneje el comportamiento de navegación
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }

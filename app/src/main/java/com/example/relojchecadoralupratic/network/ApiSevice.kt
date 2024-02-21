@@ -9,4 +9,7 @@ import retrofit2.http.POST
 interface ApiService {
     @POST("/login")
     fun login(@Body user: Usuario): Call<LoginResponse>
+
+    @POST("/crearusuario")
+    fun crearusuario(@)
 }
