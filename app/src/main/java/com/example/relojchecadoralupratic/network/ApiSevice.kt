@@ -1,5 +1,6 @@
 package com.example.relojchecadoralupratic.network
 
+import com.example.relojchecadoralupratic.models.Empleado
 import com.example.relojchecadoralupratic.models.EmpleadoResponse
 import com.example.relojchecadoralupratic.models.LoginResponse
 import com.example.relojchecadoralupratic.models.Usuario
@@ -14,4 +15,7 @@ interface ApiService {
 
     @GET("/empleados")
     fun getEmpleados(): Call<List<EmpleadoResponse>>
+
+    @POST("/crear_usuario")
+    fun crearEmpleado(@Body empleado: Empleado): Call<Boolean>
 }

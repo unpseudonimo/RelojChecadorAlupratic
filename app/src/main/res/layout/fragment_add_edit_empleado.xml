@@ -19,11 +19,12 @@
         android:layout_height="wrap_content"
         android:hint="Card #" />
 
-    <EditText
-        android:id="@+id/editTextRole"
+    <Spinner
+        android:id="@+id/spinnerRole"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Role" />
+        android:hint="Role"
+        android:entries="@array/roles" />
 
     <EditText
         android:id="@+id/editTextPassword"

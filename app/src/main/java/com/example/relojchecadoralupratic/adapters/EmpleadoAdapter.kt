@@ -38,8 +38,4 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
         return empleados.size
     }
 
-    fun setEmpleados(empleados: List<EmpleadoResponse>) {
-        this.empleados = empleados
-        notifyDataSetChanged()
-    }
 }

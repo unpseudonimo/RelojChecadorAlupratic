@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.relojchecadoralupratic.MainActivity
@@ -33,10 +34,13 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish() // Finalizar la actividad actual para evitar que el usuario regrese presionando el botón Atrás
+                    // Mostrar Toast de ingreso exitoso
+                    Toast.makeText(this, "Ingreso al sistema correctamente", Toast.LENGTH_SHORT).show()
                 } else {
                     // El login no fue exitoso
                     Log.e("LoginActivity", "Error al iniciar sesión")
-                    // Aquí puedes mostrar un mensaje de error al usuario
+                    // Mostrar Toast de error al iniciar sesión
+                    Toast.makeText(this, "No se pudo iniciar sesión", Toast.LENGTH_SHORT).show()
                 }
             }
         }
