@@ -1,6 +1,6 @@
 package com.example.relojchecadoralupratic.models
 
-data class ApiEmpleadoRes(
+data class EmpleadoResponse(
     val uid: Int,
     val userid: String,
     val name: String,
