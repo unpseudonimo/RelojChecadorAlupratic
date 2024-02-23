@@ -14,7 +14,6 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
         val uidTextView: TextView = itemView.findViewById(R.id.uidTextView)
         val useridTextView: TextView = itemView.findViewById(R.id.useridTextView)
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
-        val passwordTextView: TextView = itemView.findViewById(R.id.passwordTextView)
         val roleTextView: TextView = itemView.findViewById(R.id.roleTextView)
         val cardnoTextView: TextView = itemView.findViewById(R.id.cardnoTextView)
     }
