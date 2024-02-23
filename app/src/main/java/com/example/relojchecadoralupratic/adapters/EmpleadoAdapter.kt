@@ -29,7 +29,6 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
         holder.uidTextView.text = empleado.uid.toString()
         holder.useridTextView.text = empleado.userid
         holder.nameTextView.text = empleado.name
-        holder.passwordTextView.text = empleado.password ?: "N/A"
         holder.roleTextView.text = empleado.role.toString()
         holder.cardnoTextView.text = empleado.cardno?.toString() ?: "N/A"
     }

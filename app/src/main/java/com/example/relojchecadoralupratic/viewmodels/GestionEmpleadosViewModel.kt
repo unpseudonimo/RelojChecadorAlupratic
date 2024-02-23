@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.relojchecadoralupratic.models.EmpleadoResponse
+import com.example.relojchecadoralupratic.network.ApiService
 import com.example.relojchecadoralupratic.network.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,16 +16,23 @@ class GestionEmpleadosViewModel : ViewModel() {
     val empleados: LiveData<List<EmpleadoResponse>> = _empleados
 
     fun obtenerEmpleados() {
-        val call = RetrofitClient.webService.getEmpleados()
+        val service = RetrofitClient.webService // Obtener el servicio web directamente de RetrofitClient
+        val call = service.getEmpleados()
+
         call.enqueue(object : Callback<List<EmpleadoResponse>> {
-            override fun onResponse(call: Call<List<EmpleadoResponse>>, response: Response<List<EmpleadoResponse>>) {
+            override fun onResponse(
+                call: Call<List<EmpleadoResponse>>,
+                response: Response<List<EmpleadoResponse>>
+            ) {
                 if (response.isSuccessful) {
                     _empleados.value = response.body()
+                } else {
+                    // Manejar errores de respuesta
                 }
             }
 
             override fun onFailure(call: Call<List<EmpleadoResponse>>, t: Throwable) {
-                // Manejar el error
+                // Manejar errores de comunicación
             }
         })
     }

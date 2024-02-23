@@ -13,7 +13,7 @@ interface ApiService {
     @POST("/login")
     fun login(@Body user: Usuario): Call<LoginResponse>
 
-    @GET("/empleados")
+    @GET("/obtener_usuario")
     fun getEmpleados(): Call<List<EmpleadoResponse>>
 
     @POST("/crear_usuario")
