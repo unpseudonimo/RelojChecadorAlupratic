@@ -1,12 +1,11 @@
 package com.example.relojchecadoralupratic.models
 
 data class EmpleadoResponse(
-    val uid: Int,
-    val userid: String,
+    val Cardno: String,
+    val UID: Int,
+    val id: String,
     val name: String,
-    val password: String?,
-    val role: Int,
-    val cardno: Int?
+    val rol: String
 )
 
 data class Empleado(

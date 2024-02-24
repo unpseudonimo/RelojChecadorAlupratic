@@ -1,9 +1,11 @@
 package com.example.relojchecadoralupratic.ui.fragments.gestionempleados
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +15,7 @@ import com.example.relojchecadoralupratic.R
 import com.example.relojchecadoralupratic.adapters.EmpleadoAdapter
 import com.example.relojchecadoralupratic.viewmodels.GestionEmpleadosViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class GestionEmpleadosFragment : Fragment() {
 
@@ -20,6 +23,7 @@ class GestionEmpleadosFragment : Fragment() {
     private lateinit var adapter: EmpleadoAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var fabAgregarUsuario: FloatingActionButton
+    private lateinit var tvRespuesta: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +39,7 @@ class GestionEmpleadosFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.recyclerView)
         fabAgregarUsuario = view.findViewById(R.id.fabAgregarUsuario)
+        tvRespuesta = view.findViewById(R.id.tvRespuesta)
 
         adapter = EmpleadoAdapter(emptyList())
         recyclerView.apply {
@@ -45,7 +50,18 @@ class GestionEmpleadosFragment : Fragment() {
         viewModel.empleados.observe(viewLifecycleOwner, Observer { empleados ->
             adapter.empleados = empleados
             adapter.notifyDataSetChanged()
+
+            // Mostrar la respuesta al usuario
+            val respuesta = "Respuesta: ${empleados.toString()}"
+            tvRespuesta.text = respuesta
         })
+
+
+        viewModel.error.observe(viewLifecycleOwner, Observer { error ->
+            // Mostrar el mensaje de error en un log
+            Log.e("GestionEmpleadosFragment", "Error: $error")
+        })
+
 
         viewModel.obtenerEmpleados()
 
@@ -58,6 +74,4 @@ class GestionEmpleadosFragment : Fragment() {
                 .commit()
         }
     }
-
-
 }
