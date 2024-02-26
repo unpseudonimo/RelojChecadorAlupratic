@@ -7,18 +7,21 @@
     tools:context=".ui.fragments.gestionempleados.GestionEmpleadosFragment">
 
     <!-- Barra de búsqueda -->
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="Buscar empleado..."
-        app:iconifiedByDefault="false"/>
 
     <!-- Botón Filtro -->
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        style="@style/Widget.AppCompat.SearchView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Buscar empleado..." />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnFiltrar"
         android:layout_width="wrap_content"
@@ -33,6 +36,7 @@
     <!-- ScrollView -->
 
     <!-- Fragment Container -->
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"

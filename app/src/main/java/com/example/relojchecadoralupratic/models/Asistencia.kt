@@ -9,11 +9,12 @@ data class AsistenciaResponse(
 )
 
 data class Asistencia(
-    val entrada: String,
+    val salida:String,
+    val registro: String,
     val UID: Int,
-    val acceso: String,
-    val fecha: String,
-    val hora: String,
-    val id: String,
-    val name: String
+    val tipo_acceso: String,
+    val fecha_registro: String,
+    val hora_registro: String,
+    val id_empleado: String,
+    val nombre_empleado: String
 )

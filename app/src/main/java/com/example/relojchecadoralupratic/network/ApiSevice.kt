@@ -14,10 +14,10 @@ interface ApiService {
     @POST("/login")
     fun login(@Body user: Usuario): Call<LoginResponse>
 
-    @GET("/obtener_usuario")
+    @GET("/obtener_empleado")
     fun getEmpleados(): Call<List<EmpleadoResponse>>
 
-    @POST("/crear_usuario")
+    @POST("/crear_empleado")
     fun crearEmpleado(@Body empleado: Empleado): Call<Boolean>
     @GET("/asistencias")
     fun getAsistencias(): Call<List<Asistencia>> // Método para obtener las asistencias
