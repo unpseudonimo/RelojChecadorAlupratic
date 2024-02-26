@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.relojchecadoralupratic.databinding.ActivityMainBinding
 import com.example.relojchecadoralupratic.ui.activities.LoginActivity
+import com.example.relojchecadoralupratic.ui.fragments.gestionempleados.AddEditEmpleadoFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
@@ -45,8 +46,8 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.show()  // Agrega esta línea
 
         binding.appBarMain.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val navController = findNavController(R.id.nav_host_fragment_content_main)
+            navController.navigate(R.id.nav_addempleados)
         }
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         // Configurar la barra de acción con el controlador de navegación
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_inicio, R.id.nav_gestion_empleados, R.id.nav_reportes
+                R.id.nav_inicio, R.id.nav_gestion_empleados, R.id.nav_reportes, R.id.nav_addempleados
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

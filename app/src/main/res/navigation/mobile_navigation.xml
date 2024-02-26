@@ -28,4 +28,10 @@
         android:name="com.example.relojchecadoralupratic.ui.fragments.Asistencias.AsistenciaFragment"
         android:label="@string/menu_asistencias"
         tools:layout="@layout/fragment_asistencia" />
+
+    <fragment android:id="@+id/nav_addempleados"
+        android:name="com.example.relojchecadoralupratic.ui.fragments.gestionempleados.AddEditEmpleadoFragment"
+        android:label="Agragea"
+        tools:layout="@layout/fragment_add_edit_empleado"/>
+
 </navigation>

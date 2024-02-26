@@ -19,6 +19,7 @@ interface ApiService {
 
     @POST("/crear_empleado")
     fun crearEmpleado(@Body empleado: Empleado): Call<Boolean>
+
     @GET("/asistencias")
     fun getAsistencias(): Call<List<Asistencia>> // Método para obtener las asistencias
 }

@@ -14,15 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.relojchecadoralupratic.R
 import com.example.relojchecadoralupratic.adapters.EmpleadoAdapter
 import com.example.relojchecadoralupratic.viewmodels.GestionEmpleadosViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 
 class GestionEmpleadosFragment : Fragment() {
 
     private lateinit var viewModel: GestionEmpleadosViewModel
     private lateinit var adapter: EmpleadoAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var fabAgregarUsuario: FloatingActionButton
     private lateinit var tvRespuesta: TextView
 
     override fun onCreateView(
@@ -38,7 +35,6 @@ class GestionEmpleadosFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.recyclerView)
-        fabAgregarUsuario = view.findViewById(R.id.fabAgregarUsuario)
         tvRespuesta = view.findViewById(R.id.tvRespuesta)
 
         adapter = EmpleadoAdapter(emptyList())
@@ -64,14 +60,5 @@ class GestionEmpleadosFragment : Fragment() {
 
 
         viewModel.obtenerEmpleados()
-
-        fabAgregarUsuario.setOnClickListener {
-            val addEditEmpleadoFragment = AddEditEmpleadoFragment.newInstance()
-            val fragmentManager = requireActivity().supportFragmentManager
-            fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, addEditEmpleadoFragment)
-                .addToBackStack(null)
-                .commit()
-        }
     }
 }
