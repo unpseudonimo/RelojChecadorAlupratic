@@ -11,10 +11,7 @@ import com.example.relojchecadoralupratic.models.EmpleadoResponse
 class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adapter<EmpleadoAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val uidTextView: TextView = itemView.findViewById(R.id.uidTextView)
-        val useridTextView: TextView = itemView.findViewById(R.id.useridTextView)
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
-        val passwordTextView: TextView = itemView.findViewById(R.id.passwordTextView)
         val roleTextView: TextView = itemView.findViewById(R.id.roleTextView)
         val cardnoTextView: TextView = itemView.findViewById(R.id.cardnoTextView)
     }
@@ -26,11 +23,10 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val empleado = empleados[position]
-        holder.uidTextView.text = empleado.UID.toString()
-        holder.useridTextView.text = empleado.id
         holder.nameTextView.text = empleado.name
         holder.roleTextView.text = empleado.rol
         holder.cardnoTextView.text = empleado.Cardno
+
     }
 
     override fun getItemCount(): Int {

@@ -14,26 +14,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/uidTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/useridTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp" />
-
-        <TextView
             android:id="@+id/nameTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/passwordTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp" />
@@ -49,6 +30,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/eliminarButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            app:icon="@drawable/ic_remove"
+            android:textStyle="bold"
+            android:text="Eliminar"
+            android:onClick="eliminarEmpleado" />
 
     </LinearLayout>
 

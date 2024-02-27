@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         // Configurar la barra de acción con el controlador de navegación
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_inicio, R.id.nav_gestion_empleados, R.id.nav_reportes, R.id.nav_addempleados
+                R.id.nav_inicio, R.id.nav_gestion_empleados, R.id.nav_reportes,R.id.nav_gestion_asistencias, R.id.nav_addempleados
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

@@ -7,8 +7,10 @@ import com.example.relojchecadoralupratic.models.LoginResponse
 import com.example.relojchecadoralupratic.models.Usuario
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
     @POST("/login")
@@ -19,6 +21,9 @@ interface ApiService {
 
     @POST("/crear_empleado")
     fun crearEmpleado(@Body empleado: Empleado): Call<Boolean>
+
+    @DELETE("/eliminar_empleado/{uid}")
+    fun eliminarEmpleado(@Path("uid") uid: Int): Call<Boolean>
 
     @GET("/asistencias")
     fun getAsistencias(): Call<List<Asistencia>> // Método para obtener las asistencias

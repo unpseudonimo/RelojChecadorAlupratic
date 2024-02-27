@@ -31,7 +31,7 @@
 
     <fragment android:id="@+id/nav_addempleados"
         android:name="com.example.relojchecadoralupratic.ui.fragments.gestionempleados.AddEditEmpleadoFragment"
-        android:label="Agragea"
+        android:label="@string/menu_agregar_empleado"
         tools:layout="@layout/fragment_add_edit_empleado"/>
 
 </navigation>

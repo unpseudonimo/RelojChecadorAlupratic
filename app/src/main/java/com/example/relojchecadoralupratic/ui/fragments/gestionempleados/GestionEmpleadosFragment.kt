@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +19,6 @@ class GestionEmpleadosFragment : Fragment() {
     private lateinit var viewModel: GestionEmpleadosViewModel
     private lateinit var adapter: EmpleadoAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var tvRespuesta: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +33,6 @@ class GestionEmpleadosFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.recyclerView)
-        tvRespuesta = view.findViewById(R.id.tvRespuesta)
 
         adapter = EmpleadoAdapter(emptyList())
         recyclerView.apply {
@@ -47,9 +44,6 @@ class GestionEmpleadosFragment : Fragment() {
             adapter.empleados = empleados
             adapter.notifyDataSetChanged()
 
-            // Mostrar la respuesta al usuario
-            val respuesta = "Respuesta: ${empleados.toString()}"
-            tvRespuesta.text = respuesta
         })
 
 

@@ -16,9 +16,6 @@
         android:theme="@style/Theme.RelojChecadorAlupratic"
         tools:targetApi="31">
         <activity
-            android:name=".viewmodels.factory.GestionAsistenciasViewModel"
-            android:exported="false" />
-        <activity
             android:name=".ui.activities.DetalleEmpleadoActivity"
             android:exported="false" />
         <activity
@@ -27,9 +24,7 @@
         <activity
             android:name=".ui.activities.LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.activities.AsistenciaActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
