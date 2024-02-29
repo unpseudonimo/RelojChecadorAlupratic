@@ -39,24 +39,4 @@ class GestionEmpleadosViewModel : ViewModel() {
         })
     }
 
-    fun eliminarEmpleado(uid: Int) {
-        val call = RetrofitClient.webService.eliminarEmpleado(uid)
-        call.enqueue(object : Callback<Boolean> {
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                if (response.isSuccessful) {
-                    Log.d("GestionEmpleadosViewModel", "Empleado eliminado exitosamente")
-                    // Actualizar la lista de empleados después de eliminar uno
-                    obtenerEmpleados()
-                } else {
-                    // Manejar errores de respuesta
-                    _error.value = "Error al eliminar empleado: ${response.code()}"
-                }
-            }
-
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                // Manejar errores de comunicación
-                _error.value = "Error de comunicación: ${t.message}"
-            }
-        })
-    }
 }

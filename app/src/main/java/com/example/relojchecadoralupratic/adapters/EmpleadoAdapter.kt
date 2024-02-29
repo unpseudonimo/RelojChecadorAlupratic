@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.relojchecadoralupratic.R
 import com.example.relojchecadoralupratic.models.EmpleadoResponse
@@ -12,8 +14,6 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
-        val roleTextView: TextView = itemView.findViewById(R.id.roleTextView)
-        val cardnoTextView: TextView = itemView.findViewById(R.id.cardnoTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,14 +23,21 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val empleado = empleados[position]
-        holder.nameTextView.text = empleado.name
-        holder.roleTextView.text = empleado.rol
-        holder.cardnoTextView.text = empleado.Cardno
+        holder.nameTextView.text = "Nombre: ${empleado.name}"
 
     }
 
     override fun getItemCount(): Int {
         return empleados.size
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        val layoutManager = recyclerView.layoutManager
+        if (layoutManager is LinearLayoutManager) {
+            val dividerItemDecoration = DividerItemDecoration(recyclerView.context, layoutManager.orientation)
+            recyclerView.addItemDecoration(dividerItemDecoration)
+        }
     }
 
 }
