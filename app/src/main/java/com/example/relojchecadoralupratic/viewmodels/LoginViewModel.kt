@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.relojchecadoralupratic.network.RetrofitClient
 import com.example.relojchecadoralupratic.models.LoginResponse
 import com.example.relojchecadoralupratic.models.Usuario
 import retrofit2.Call

@@ -12,7 +12,6 @@ import android.widget.EditText
 import android.widget.Spinner
 import com.example.relojchecadoralupratic.R
 import com.example.relojchecadoralupratic.models.Empleado
-import com.example.relojchecadoralupratic.network.RetrofitClient
 import com.example.relojchecadoralupratic.viewmodels.AddEditEmpleadoViewModel
 import com.example.relojchecadoralupratic.viewmodels.factory.AddEditEmpleadoViewModelFactory
 

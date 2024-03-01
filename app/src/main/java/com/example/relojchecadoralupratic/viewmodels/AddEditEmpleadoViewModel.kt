@@ -4,8 +4,6 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.relojchecadoralupratic.models.Empleado
-import com.example.relojchecadoralupratic.network.ApiService
-import com.example.relojchecadoralupratic.network.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
