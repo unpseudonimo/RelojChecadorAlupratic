@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.appBarMain.fab.setOnClickListener { view ->
             val navController = findNavController(R.id.nav_host_fragment_content_main)
-            navController.navigate(R.id.nav_addempleados)
+            navController.navigate(R.id.nav_reportes)
         }
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         // Configurar la barra de acción con el controlador de navegación
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_inicio, R.id.nav_gestion_empleados, R.id.nav_reportes,R.id.nav_gestion_asistencias, R.id.nav_addempleados
+                R.id.nav_inicio, R.id.nav_gestion_empleados, R.id.nav_reportes,R.id.nav_gestion_asistencias
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

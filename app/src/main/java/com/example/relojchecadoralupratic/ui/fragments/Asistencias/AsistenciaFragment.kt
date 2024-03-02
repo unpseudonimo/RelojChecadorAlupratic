@@ -1,6 +1,5 @@
 package com.example.relojchecadoralupratic.ui.fragments.Asistencias
 
-import AsistenciaAdapter
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.relojchecadoralupratic.R
+import com.example.relojchecadoralupratic.adapters.AsistenciaAdapter
 import com.example.relojchecadoralupratic.viewmodels.AsistenciaViewModel
 class AsistenciaFragment : Fragment() {
     private lateinit var viewModel: AsistenciaViewModel
@@ -40,9 +40,11 @@ class AsistenciaFragment : Fragment() {
 
 
         viewModel.asistencias.observe(viewLifecycleOwner, Observer { asistencias ->
-            adapter.asistencias = asistencias
+            adapter.asistencias = asistencias.sortedWith(compareBy({ it.fecha_registro }, { it.hora_registro })).reversed()
             adapter.notifyDataSetChanged()
         })
+
+
 
         viewModel.asistencias.observe(viewLifecycleOwner, {error ->
             Log.e("GestionEmpleadosFragment", "Error: $error")

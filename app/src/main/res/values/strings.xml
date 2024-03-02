@@ -32,4 +32,16 @@
         <item>Admin</item>
     </string-array>
 
+
+    <string-array name="sedes_array">
+        <item>1.-Oficinas</item>
+        <item>2.-Cedis</item>
+        <item>3.-Atlixco</item>
+        <item>4.-Ecatepec</item>
+        <item>5.-Puebla</item>
+        <item>6.-Los Reyes</item>
+        <item>7.-Ixtapaluca</item>
+        <item>8.-Chalco</item>
+    </string-array>
+
 </resources>

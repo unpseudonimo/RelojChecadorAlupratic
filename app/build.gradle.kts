@@ -42,7 +42,6 @@ dependencies {
     // AndroidX Libraries
     implementation("androidx.core:core-ktx:1.9.0") // Extensiones de Kotlin para las bibliotecas de AndroidX Core
     implementation("androidx.appcompat:appcompat:1.6.1") // Biblioteca de compatibilidad para utilizar funciones modernas en versiones antiguas de Android
-    implementation("com.google.android.material:material:1.11.0") // Componentes de Material Design para Android
     implementation("androidx.constraintlayout:constraintlayout:2.1.4") // Biblioteca para diseño de interfaces de usuario en Android
 
     // AndroidX Lifecycle Components
@@ -68,5 +67,6 @@ dependencies {
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
-
+    //material3
+    implementation("com.google.android.material:material:1.9.0")
 }

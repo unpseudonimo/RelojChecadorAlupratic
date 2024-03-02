@@ -1,26 +1,25 @@
 package com.example.relojchecadoralupratic.ui.fragments.gestionempleados
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.relojchecadoralupratic.R
 import com.example.relojchecadoralupratic.models.Empleado
 import com.example.relojchecadoralupratic.viewmodels.AddEditEmpleadoViewModel
-import com.example.relojchecadoralupratic.viewmodels.factory.AddEditEmpleadoViewModelFactory
 
 class AddEditEmpleadoFragment : Fragment() {
 
     private lateinit var viewModel: AddEditEmpleadoViewModel
     private lateinit var editTextName: EditText
     private lateinit var editTextCardNumber: EditText
-    private lateinit var spinnerRole: Spinner
+    private lateinit var autoCompleteTextView: AutoCompleteTextView
     private lateinit var editTextPassword: EditText
     private lateinit var buttonSave: Button
 
@@ -31,7 +30,7 @@ class AddEditEmpleadoFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_edit_empleado, container, false)
         editTextName = view.findViewById(R.id.editTextName)
         editTextCardNumber = view.findViewById(R.id.editTextCardNumber)
-        spinnerRole = view.findViewById(R.id.spinnerRole)
+        autoCompleteTextView = view.findViewById(R.id.autoCompleteTextView)
         editTextPassword = view.findViewById(R.id.editTextPassword)
         buttonSave = view.findViewById(R.id.buttonSave)
         return view
@@ -41,15 +40,14 @@ class AddEditEmpleadoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AddEditEmpleadoViewModel::class.java)
 
-        val roles = resources.getStringArray(R.array.roles)
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, roles)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerRole.adapter = adapter
+        val items = arrayOf("User", "Admin")
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        autoCompleteTextView.setAdapter(adapter)
 
         buttonSave.setOnClickListener {
             val name = editTextName.text.toString()
             val cardNumber = editTextCardNumber.text.toString()
-            val role = spinnerRole.selectedItem.toString()
+            val role = autoCompleteTextView.text.toString()
             val password = editTextPassword.text.toString()
 
             val empleado = Empleado(name, cardNumber, role, password)
