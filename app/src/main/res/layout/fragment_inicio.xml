@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             tools:context=".ui.fragments.inicio.InicioFragment">
 
+
             <Spinner
                 android:id="@+id/spinnerSedes"
                 android:layout_width="wrap_content"
@@ -33,27 +34,58 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="16dp"/>
 
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/textViewSeleccionSede"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <Button
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:id="@+id/hoyfilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hoy"
+                    />
+                <Button
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:id="@+id/ayerfilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ayer"
+                    />
+                <Button
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:id="@+id/quincenalfilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quincenal"
+                    />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <TextView
+                android:id="@+id/textViewTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Asistencias de Hoy"
+                app:layout_constraintTop_toBottomOf="@id/toggleButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSeleccionSede"
-                app:layout_constraintVertical_bias="1.0"
-                tools:layout_editor_absoluteX="0dp" />
+                android:layout_height="300dp"
+                app:layout_constraintTop_toBottomOf="@id/textViewTitulo"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

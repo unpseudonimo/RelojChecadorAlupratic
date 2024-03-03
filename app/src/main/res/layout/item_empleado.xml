@@ -6,12 +6,24 @@
     android:orientation="vertical"
     android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/nameTextView"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="empleado"
-        android:textSize="14sp" />
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/idEmpleado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="id"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="empleado"
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </LinearLayout>

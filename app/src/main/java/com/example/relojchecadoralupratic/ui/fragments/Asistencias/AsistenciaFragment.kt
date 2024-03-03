@@ -11,11 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.relojchecadoralupratic.R
-import com.example.relojchecadoralupratic.adapters.AsistenciaAdapter
+import com.example.relojchecadoralupratic.adapters.AsistenciaDetalleAdapter
 import com.example.relojchecadoralupratic.viewmodels.AsistenciaViewModel
 class AsistenciaFragment : Fragment() {
     private lateinit var viewModel: AsistenciaViewModel
-    private lateinit var adapter: AsistenciaAdapter
+    private lateinit var adapter: AsistenciaDetalleAdapter
     private lateinit var recyclerView: RecyclerView
 
 
@@ -32,7 +32,7 @@ class AsistenciaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recyclerViewAsistencias)
 
-        adapter = AsistenciaAdapter(emptyList())
+        adapter = AsistenciaDetalleAdapter(emptyList())
         recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@AsistenciaFragment.adapter

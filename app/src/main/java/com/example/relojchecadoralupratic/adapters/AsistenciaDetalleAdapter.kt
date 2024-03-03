@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.relojchecadoralupratic.R
 import com.example.relojchecadoralupratic.models.Asistencia
 
-class AsistenciaAdapter(var asistencias: List<Asistencia>) : RecyclerView.Adapter<AsistenciaAdapter.ViewHolder>() {
+class AsistenciaDetalleAdapter(var asistencias: List<Asistencia>) : RecyclerView.Adapter<AsistenciaDetalleAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)

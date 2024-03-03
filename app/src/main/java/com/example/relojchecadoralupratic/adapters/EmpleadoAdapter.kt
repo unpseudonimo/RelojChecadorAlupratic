@@ -19,14 +19,13 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
     // Lista filtrada de empleados
     var empleadosFiltered: List<EmpleadoResponse> = empleados
 
-    // Inicialización de la lista filtrada
-    init {
-        empleadosFiltered = empleados
-    }
+    // Variable para indicar si el filtro está activo
+    private var isFilterActive: Boolean = false
 
     // ViewHolder para los elementos de la lista
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
+        val ipEmpleado: TextView = itemView.findViewById(R.id.idEmpleado)
     }
 
     // Creación de ViewHolder
@@ -37,13 +36,22 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
 
     // Vinculación de datos a ViewHolder
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val empleado = empleadosFiltered[position]
+        val empleado = if (isFilterActive && empleadosFiltered.isNotEmpty()) {
+            empleadosFiltered[position]
+        } else {
+            empleados[position]
+        }
         holder.nameTextView.text = empleado.name
+        holder.ipEmpleado.text = "${empleado.id}."
     }
 
     // Obtención del número de elementos en la lista filtrada
     override fun getItemCount(): Int {
-        return empleadosFiltered.size
+        return if (isFilterActive && empleadosFiltered.isNotEmpty()) {
+            empleadosFiltered.size
+        } else {
+            empleados.size
+        }
     }
 
     // Añadir decoración de separadores a la lista
@@ -69,6 +77,7 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
                 }
                 val results = FilterResults()
                 results.values = filteredList
+                isFilterActive = constraint?.isNotEmpty() ?: false
                 return results
             }
 
