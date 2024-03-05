@@ -13,6 +13,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             tools:context=".ui.fragments.inicio.InicioFragment">
 
 
@@ -76,11 +77,94 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="16dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView1"
+            <!-- Agrega un MaterialCardView para el RecyclerView -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvRv1"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                app:layout_constraintTop_toBottomOf="@id/textViewTitulo"/>
+                android:layout_height="400dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                app:layout_constraintTop_toBottomOf="@id/textViewTitulo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- Agrega un MaterialCardView para el DatePicker -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvDatePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                android:layout_margin="10dp"
+                app:layout_constraintTop_toBottomOf="@id/mcvRv1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">\
+
+                    <TextView
+                        android:id="@+id/textViewTitulo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Filtrar por rango de fecha"
+                        android:textStyle="bold"
+                        android:layout_marginTop="16dp"/>
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnOpenDatePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Seleccionar rango de fechas" />
+
+
+                    <TextView
+                        android:id="@+id/textViewSelectedDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha seleccionada: "
+                        android:layout_marginBottom="10dp"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Agrega un MaterialCardView para el RecyclerView -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvRv2"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                app:layout_constraintTop_toBottomOf="@id/mcvDatePicker"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+
+            </com.google.android.material.card.MaterialCardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
