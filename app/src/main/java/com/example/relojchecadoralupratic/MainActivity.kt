@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.appBarMain.fab.setOnClickListener { view ->
             val navController = findNavController(R.id.nav_host_fragment_content_main)
-            navController.navigate(R.id.nav_reportes)
+            //navController.navigate(R.id.nav_reportes)
         }
 
         val drawerLayout: DrawerLayout = binding.drawerLayout

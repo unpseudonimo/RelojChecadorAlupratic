@@ -41,7 +41,7 @@ class GestionEmpleadosFragment : Fragment() {
         btnRegistrar = view.findViewById(R.id.fabRegistrarPersonal)
 
         // Inicializar el Adapter
-        adapter = EmpleadoAdapter(emptyList())
+        adapter = EmpleadoAdapter(emptyList(), findNavController())
 
         // Configurar el RecyclerView
         recyclerView.apply {
@@ -94,6 +94,10 @@ class GestionEmpleadosFragment : Fragment() {
 
         // Obtener los empleados
         viewModel.obtenerEmpleados()
+
+        // Dentro del método onViewCreated después de la obtención de empleados
+        adapter.setNavController(findNavController())
+
 
 
     }

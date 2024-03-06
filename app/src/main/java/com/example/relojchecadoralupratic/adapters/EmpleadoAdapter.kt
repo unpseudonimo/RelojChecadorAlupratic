@@ -1,19 +1,23 @@
 package com.example.relojchecadoralupratic.adapters
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.relojchecadoralupratic.R
 import com.example.relojchecadoralupratic.models.EmpleadoResponse
+import com.example.relojchecadoralupratic.ui.activities.DetalleEmpleadoActivity
 import java.util.*
 
-class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adapter<EmpleadoAdapter.ViewHolder>(),
+class EmpleadoAdapter(var empleados: List<EmpleadoResponse>, private var navController: NavController) : RecyclerView.Adapter<EmpleadoAdapter.ViewHolder>(),
     Filterable {
 
     // Lista filtrada de empleados
@@ -22,10 +26,34 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
     // Variable para indicar si el filtro está activo
     private var isFilterActive: Boolean = false
 
+    fun setNavController(navController: NavController) {
+        this.navController = navController
+    }
+
     // ViewHolder para los elementos de la lista
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
-        val ipEmpleado: TextView = itemView.findViewById(R.id.idEmpleado)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
+        private val idEmpleado: TextView = itemView.findViewById(R.id.idEmpleado)
+
+        init {
+            // Agregar OnClickListener al itemView
+            itemView.setOnClickListener {
+                // Obtener el empleado correspondiente al ViewHolder
+                val empleado = empleadosFiltered[adapterPosition] // Usar empleadosFiltered en lugar de empleados
+                Log.d("EmpleadoAdapter", "Empleado seleccionado: $empleado")
+                // Navegar a la actividad DetalleEmpleadoActivity
+                val intent = Intent(itemView.context, DetalleEmpleadoActivity::class.java)
+                intent.putExtra("empleado_id", empleado.id.toInt()) // Convertir a Int
+                intent.putExtra("empleado_nombre", empleado.name) // Pasar el nombre del empleado
+                itemView.context.startActivity(intent)
+            }
+        }
+
+        // Vincular datos a la vista
+        fun bind(empleado: EmpleadoResponse) {
+            nameTextView.text = empleado.name
+            idEmpleado.text = "${empleado.id}."
+        }
     }
 
     // Creación de ViewHolder
@@ -41,8 +69,8 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>) : RecyclerView.Adap
         } else {
             empleados[position]
         }
-        holder.nameTextView.text = empleado.name
-        holder.ipEmpleado.text = "${empleado.id}."
+        Log.d("EmpleadoAdapter", "Empleado mostrado en la posición $position: $empleado")
+        holder.bind(empleado)
     }
 
     // Obtención del número de elementos en la lista filtrada

@@ -52,36 +52,6 @@
                    app:icon="@drawable/ic_download"
                    android:text="Descargar "/>
 
-               <com.google.android.material.card.MaterialCardView
-                   android:layout_width="match_parent"
-                   android:layout_height="500dp"
-                   style="?attr/materialCardViewElevatedStyle"
-                   app:cardCornerRadius="15dp"
-                   android:layout_margin="10dp">
-
-                   <TextView
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:text="Entradas y salidas"
-                       android:layout_marginTop="10dp"
-                       android:layout_marginLeft="10dp"
-                       android:textStyle="bold"
-                       android:textSize="20dp" />
-
-
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:layout_marginTop="50dp"
-                       android:orientation="vertical">
-
-                       <androidx.recyclerview.widget.RecyclerView
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           />
-                   </LinearLayout>
-
-               </com.google.android.material.card.MaterialCardView>
 
            </LinearLayout>
 </ScrollView>

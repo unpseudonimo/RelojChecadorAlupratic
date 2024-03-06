@@ -60,7 +60,6 @@ class AsistenciaAdapter(var asistencias: List<Asistencia>) : RecyclerView.Adapte
         holder.accesoTextView.text = "Acceso: ${acceso}"
     }
 
-
     override fun getItemCount(): Int {
         return asistencias.size
     }
@@ -73,4 +72,11 @@ class AsistenciaAdapter(var asistencias: List<Asistencia>) : RecyclerView.Adapte
             recyclerView.addItemDecoration(dividerItemDecoration)
         }
     }
+
+    // Método para actualizar los datos del adaptador
+    fun updateData(newAsistencias: List<Asistencia>) {
+        asistencias = newAsistencias
+        notifyDataSetChanged()
+    }
 }
+

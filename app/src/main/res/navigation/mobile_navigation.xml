@@ -34,4 +34,10 @@
         android:label="@string/menu_agregar_empleado"
         tools:layout="@layout/fragment_add_edit_empleado"/>
 
+    <activity
+        android:id="@+id/nav_detalle_empleado"
+        android:name="com.example.relojchecadoralupratic.ui.activities.DetalleEmpleadoActivity"
+        android:label="Detalle de empleado"
+        tools:layout="@layout/activity_detalle_empleado"/>
+
 </navigation>
