@@ -31,6 +31,7 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>, private var navCont
     }
 
     // ViewHolder para los elementos de la lista
+    // ViewHolder para los elementos de la lista
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
         private val idEmpleado: TextView = itemView.findViewById(R.id.idEmpleado)
@@ -38,14 +39,24 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>, private var navCont
         init {
             // Agregar OnClickListener al itemView
             itemView.setOnClickListener {
-                // Obtener el empleado correspondiente al ViewHolder
-                val empleado = empleadosFiltered[adapterPosition] // Usar empleadosFiltered en lugar de empleados
-                Log.d("EmpleadoAdapter", "Empleado seleccionado: $empleado")
-                // Navegar a la actividad DetalleEmpleadoActivity
-                val intent = Intent(itemView.context, DetalleEmpleadoActivity::class.java)
-                intent.putExtra("empleado_id", empleado.id.toInt()) // Convertir a Int
-                intent.putExtra("empleado_nombre", empleado.name) // Pasar el nombre del empleado
-                itemView.context.startActivity(intent)
+                // Obtener la lista de empleados a usar
+                val listaEmpleados = if (empleadosFiltered.isNotEmpty()) {
+                    empleadosFiltered
+                } else {
+                    empleados
+                }
+
+                // Verificar si la lista de empleados no está vacía
+                if (listaEmpleados.isNotEmpty()) {
+                    // Obtener el empleado correspondiente al ViewHolder
+                    val empleado = listaEmpleados[adapterPosition]
+                    Log.d("EmpleadoAdapter", "Empleado seleccionado: $empleado")
+                    // Navegar a la actividad DetalleEmpleadoActivity
+                    val intent = Intent(itemView.context, DetalleEmpleadoActivity::class.java)
+                    intent.putExtra("empleado_id", empleado.id.toInt()) // Convertir a Int
+                    intent.putExtra("empleado_nombre", empleado.name) // Pasar el nombre del empleado
+                    itemView.context.startActivity(intent)
+                }
             }
         }
 
