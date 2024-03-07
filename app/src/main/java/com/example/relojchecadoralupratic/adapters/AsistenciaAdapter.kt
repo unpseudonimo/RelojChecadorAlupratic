@@ -60,7 +60,7 @@ class AsistenciaAdapter(var asistencias: List<Asistencia>) : RecyclerView.Adapte
         holder.accesoTextView.text = "Acceso: ${acceso}"
     }
 
-    override fun getItemCount(): Int {
+override fun getItemCount(): Int {
         return asistencias.size
     }
 

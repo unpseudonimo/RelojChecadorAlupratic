@@ -45,10 +45,10 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarMain.toolbar)
         supportActionBar?.show()  // Agrega esta línea
 
-        binding.appBarMain.fab.setOnClickListener { view ->
+        /*binding.appBarMain.fab.setOnClickListener { view ->
             val navController = findNavController(R.id.nav_host_fragment_content_main)
-            //navController.navigate(R.id.nav_reportes)
-        }
+            navController.navigate(R.id.nav_gestion_empleados)
+        }*/
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView

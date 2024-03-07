@@ -31,7 +31,6 @@ class EmpleadoAdapter(var empleados: List<EmpleadoResponse>, private var navCont
     }
 
     // ViewHolder para los elementos de la lista
-    // ViewHolder para los elementos de la lista
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
         private val idEmpleado: TextView = itemView.findViewById(R.id.idEmpleado)

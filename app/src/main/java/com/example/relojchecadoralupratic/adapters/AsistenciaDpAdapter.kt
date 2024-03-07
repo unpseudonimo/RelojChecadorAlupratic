@@ -73,4 +73,10 @@ class AsistenciaDpAdapter(var asistencias: List<Asistencia>) : RecyclerView.Adap
             recyclerView.addItemDecoration(dividerItemDecoration)
         }
     }
+
+    // Método para actualizar los datos del adaptador
+    fun updateData(newAsistencias: List<Asistencia>) {
+        asistencias = newAsistencias
+        notifyDataSetChanged()
+    }
 }
