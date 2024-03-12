@@ -1,9 +1,9 @@
 package com.example.relojchecadoralupratic.viewmodels
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.relojchecadoralupratic.models.Empleado
+import com.example.relojchecadoralupratic.models.RespuestaCreacionEmpleado
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,22 +14,25 @@ class AddEditEmpleadoViewModel : ViewModel() {
 
     fun crearEmpleado(empleado: Empleado, onResult: (Boolean) -> Unit) {
         Log.d("AddEditEmpleadoViewModel", "Realizando solicitud para crear empleado: $empleado")
-        apiService.crearEmpleado(empleado).enqueue(object : Callback<Boolean> {
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                val exito = response.body()
-                if (exito != null && exito) {
-                    // El empleado fue creado exitosamente
+        apiService.crearEmpleado(empleado).enqueue(object : Callback<RespuestaCreacionEmpleado> {
+            override fun onResponse(call: Call<RespuestaCreacionEmpleado>, response: Response<RespuestaCreacionEmpleado>) {
+                val respuesta = response.body()
+                if (response.isSuccessful && respuesta != null && respuesta.mensaje == "Operación exitosa:") {
+                    // El empleado se creó correctamente
                     onResult(true)
+                    Log.d("AddEditEmpleadoViewModel", "Empleado creado correctamente")
                 } else {
-                    // Error al crear el empleado
+                    // Hubo un error al crear el empleado
                     onResult(false)
+                    val mensajeError = respuesta?.mensaje ?: response.errorBody()?.string()
+                    Log.e("AddEditEmpleadoViewModel", "Error al crear el empleado: $mensajeError")
                 }
-                Log.d("AddEditEmpleadoViewModel", "Respuesta del servidor: $exito")
             }
 
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                Log.e("AddEditEmpleadoViewModel", "Error al realizar la solicitud para crear empleado: ${t.message}")
+            override fun onFailure(call: Call<RespuestaCreacionEmpleado>, t: Throwable) {
+                // Hubo un error al realizar la solicitud
                 onResult(false)
+                Log.e("AddEditEmpleadoViewModel", "Error al realizar la solicitud para crear empleado: ${t.message}")
             }
         })
     }

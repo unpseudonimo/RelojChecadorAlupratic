@@ -47,11 +47,7 @@ class InicioFragment : Fragment() {
         // Referencias a las vistas
         recyclerView = binding.recyclerView1
         recyclerView2 =  binding.recyclerView2
-        spinner = root.findViewById(R.id.spinnerSedes)
         btnOpenDataPicker = root.findViewById(R.id.btnOpenDatePicker)
-
-        // Configurar el Spinner con las opciones
-        setupSpinner()
 
         return root
     }
@@ -120,10 +116,7 @@ class InicioFragment : Fragment() {
                         filterAsistencias("ayer")
                         updateTitle("ayer")
                     }
-                    R.id.quincenalfilter -> {
-                        filterAsistencias("quincenal")
-                        updateTitle("quincenal")
-                    }
+
                 }
             }
         }

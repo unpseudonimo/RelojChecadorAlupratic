@@ -1,10 +1,12 @@
 package com.example.relojchecadoralupratic.network
 
+import com.example.relojchecadoralupratic.models.ArchivosZipResponse
 import com.example.relojchecadoralupratic.models.Asistencia
 import com.example.relojchecadoralupratic.models.Empleado
 import com.example.relojchecadoralupratic.models.EmpleadoResponse
 import com.example.relojchecadoralupratic.models.LoginResponse
 import com.example.relojchecadoralupratic.models.Reporte
+import com.example.relojchecadoralupratic.models.RespuestaCreacionEmpleado
 import com.example.relojchecadoralupratic.models.Usuario
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -24,7 +26,7 @@ interface ApiService {
     fun getEmpleados(): Call<List<EmpleadoResponse>>
 
     @POST("/crear_empleado")
-    fun crearEmpleado(@Body empleado: Empleado): Call<Boolean>
+    fun crearEmpleado(@Body empleado: Empleado): Call<RespuestaCreacionEmpleado>
 
     @DELETE("/eliminar_empleado/{uid}")
     fun eliminarEmpleado(@Path("uid") uid: Int): Call<Boolean>
@@ -35,4 +37,6 @@ interface ApiService {
     @POST("/generar_reporte")
     fun generarReportePdf(@Body requestBody: RequestBody): Call<ResponseBody>
 
+    @GET("/obtener_archivos_zip")
+    fun obtenerArchivosZip(): Call<List<String>> // Cambio de tipo de retorno
 }

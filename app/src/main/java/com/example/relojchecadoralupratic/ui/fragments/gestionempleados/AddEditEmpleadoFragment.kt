@@ -8,8 +8,10 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.relojchecadoralupratic.R
 import com.example.relojchecadoralupratic.models.Empleado
 import com.example.relojchecadoralupratic.viewmodels.AddEditEmpleadoViewModel
@@ -40,8 +42,8 @@ class AddEditEmpleadoFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AddEditEmpleadoViewModel::class.java)
 
-        val items = arrayOf("User", "Admin")
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
+        val roles = arrayOf("User", "Admin")
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, roles)
         autoCompleteTextView.setAdapter(adapter)
 
         buttonSave.setOnClickListener {
@@ -54,11 +56,19 @@ class AddEditEmpleadoFragment : Fragment() {
             viewModel.crearEmpleado(empleado) { success ->
                 if (success) {
                     // El empleado se creó correctamente
+                    mostrarToast("Empleado guardado correctamente")
+                    // Navegar de regreso al fragmento GestionEmpleadosFragment
+                    findNavController().navigateUp()
                 } else {
                     // Hubo un error al crear el empleado
+                    mostrarToast("Error al guardar el empleado")
                 }
             }
         }
+    }
+
+    private fun mostrarToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

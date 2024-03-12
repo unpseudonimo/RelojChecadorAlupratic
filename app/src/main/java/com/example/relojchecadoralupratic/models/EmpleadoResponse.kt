@@ -14,3 +14,7 @@ data class Empleado(
     val rol: String,
     val password: String
 )
+
+data class RespuestaCreacionEmpleado(
+    val mensaje: String
+)

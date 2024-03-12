@@ -1,9 +1,18 @@
 package com.example.relojchecadoralupratic.ui.activities
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.EditText
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +23,10 @@ import com.example.relojchecadoralupratic.models.Asistencia
 import com.example.relojchecadoralupratic.viewmodels.AsistenciaViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -29,6 +42,12 @@ class DetalleEmpleadoActivity : AppCompatActivity() {
 
     private lateinit var viewModel: AsistenciaViewModel
 
+    private var nombreReporte: String? = null
+
+    private val REQUEST_SAVE_FILE = 1002
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_empleado)
@@ -42,6 +61,7 @@ class DetalleEmpleadoActivity : AppCompatActivity() {
         val empleadoNombreTextView: TextView = findViewById(R.id.textViewName)
         val btnOpenDataPicker: MaterialButton = findViewById(R.id.btnOpenDatePicker)
         val tvDiasTrabajados: TextView = findViewById(R.id.tvHorasTrabajadas)
+        val fabDescargarReporte: ExtendedFloatingActionButton = findViewById(R.id.fabDescargarReporte)
 
         // Mostrar el ID y el nombre del empleado en los TextView correspondientes
         empleadoIdTextView.text = "Id: ${empleadoId.toString()}"
@@ -52,6 +72,11 @@ class DetalleEmpleadoActivity : AppCompatActivity() {
             // Mostrar el DatePicker
             showDatePicker(empleadoId, empleadoNombre)
         }
+
+        fabDescargarReporte.setOnClickListener {
+            showReportDialog()
+        }
+
 
         // Obtener ViewModel
         viewModel = ViewModelProvider(this).get(AsistenciaViewModel::class.java)
@@ -79,6 +104,17 @@ class DetalleEmpleadoActivity : AppCompatActivity() {
             adapter.updateData(asistenciasHoy)
         })
 
+        viewModel.exitoDescarga.observe(this, { exito ->
+            if (exito) {
+                viewModel.rutaArchivo.value?.let { ruta ->
+                    Snackbar.make(
+                        findViewById(android.R.id.content),
+                        "El archivo se guardó correctamente",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        })
         // Obtener asistencias del servidor
         viewModel.obtenerAsistencias(this)
     }
@@ -139,6 +175,47 @@ class DetalleEmpleadoActivity : AppCompatActivity() {
         adapter2.updateData(adapter2.asistencias)
     }
 
+    private fun showReportDialog() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_reporte_nombre, null)
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Generar reporte")
+            .setMessage("Escribe el nombre del reporte:")
+            .setView(dialogView)
+            .setPositiveButton("Aceptar") { dialog, which ->
+                nombreReporte = dialogView.findViewById<EditText>(R.id.editTextNombreReporte).text.toString()
+                requestStoragePermission()
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun requestStoragePermission() {
+        this.nombreReporte = nombreReporte // Asignar el nombre del reporte a la variable de clase
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                REQUEST_CODE_WRITE_EXTERNAL_STORAGE
+            )
+        } else {
+            val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "application/zip"
+                putExtra(Intent.EXTRA_TITLE, nombreReporte + ".zip")
+            }
+            startActivityForResult(intent, REQUEST_SAVE_FILE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_SAVE_FILE && resultCode == Activity.RESULT_OK) {
+            data?.data?.let { uri ->
+                viewModel.generarReportePdf( adapter2.asistencias, uri, nombreReporte!!, this)
+            }
+        }
+    }
+
     private fun CalcularDiasTrabajados(asistencias: List<Asistencia>): Int {
         val diasTrabajados = mutableSetOf<String>()
 
@@ -151,6 +228,10 @@ class DetalleEmpleadoActivity : AppCompatActivity() {
 
         Log.d("DetalleEmpleadoActivity", "Días trabajados: ${diasTrabajados.size}")
         return diasTrabajados.size
+    }
+
+    companion object {
+        private const val REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 1001
     }
 
 }
