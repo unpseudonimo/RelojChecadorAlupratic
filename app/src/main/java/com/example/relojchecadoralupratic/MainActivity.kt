@@ -6,6 +6,10 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -64,6 +68,21 @@ class MainActivity : AppCompatActivity() {
 
         // Configurar NavigationView para que use el controlador de navegación
         navView.setupWithNavController(navController)
+
+        // Obtener el TextView del header y establecer el nombre de usuario
+        val headerView = navView.getHeaderView(0)
+        val textViewUsername = headerView.findViewById<TextView>(R.id.textView)
+        textViewUsername.text = sharedPreferences.getString("username", "N/A")
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_logout -> {
+                showLogoutConfirmationDialog()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     // Función para verificar si el usuario ha iniciado sesión
@@ -89,6 +108,31 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }
+    private fun showLogoutConfirmationDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Cerrar sesión")
+            .setMessage("¿Estás seguro de que quieres cerrar sesión?")
+            .setPositiveButton("Sí") { dialog, which ->
+                logout()
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun logout() {
+        // Limpiar las credenciales de inicio de sesión en SharedPreferences
+        sharedPreferences.edit().apply {
+            remove("isLoggedIn")
+            remove("username")
+            apply()
+        }
+        // Mostrar Toast de cierre de sesión
+        Toast.makeText(this, "Sesión cerrada exitosamente", Toast.LENGTH_SHORT).show()
+        // Redirigir al usuario a la pantalla de inicio de sesión
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish() // Finalizar la actividad actual para evitar que el usuario regrese presionando el botón Atrás
     }
 
     override fun onSupportNavigateUp(): Boolean {

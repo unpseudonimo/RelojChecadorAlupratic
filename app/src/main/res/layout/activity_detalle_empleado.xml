@@ -22,9 +22,9 @@
                 android:id="@+id/llDatos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:padding="10dp">
+                android:orientation="vertical"
+                android:gravity="left"
+                android:padding="5dp">
 
                 <!-- TextView para mostrar el ID del empleado -->
                 <TextView
@@ -33,8 +33,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:text="ID:"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textViewName"
@@ -42,20 +41,21 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:text="Nombre:"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvHorasTrabajadas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dias laborados"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="10dp" />
+                    android:layout_gravity="left"
+                    />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvHorasTrabajadas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Horas acumuladas:"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"/>
+
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
